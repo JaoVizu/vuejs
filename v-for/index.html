@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Renderizções Condicionais</title>
+
+    <style>
+        .verde { color: green; }
+        .vermelho { color: red; }
+        button { cursor: pointer;}
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+       <ul>
+           <li v-for="(item, index) in items">
+               {{item.message}} / {{index}}
+           </li>
+       </ul>
+
+       <ol>
+           <li v-for="fruta of frutas">
+               {{fruta.nome}}
+           </li>
+       </ol>
+
+       <div>
+           <h3>Livro</h3>
+           <ul>
+               <li v-for="value in livro">
+                   {{value}}
+               </li>
+           </ul>
+       </div>
+
+       <div>
+           <h3>Livro com todas as infos</h3>
+           <ul>
+               <li v-for="(value, name) in livro">
+                   {{name}} : {{value}}
+               </li>
+           </ul>
+       </div>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data : {
+                items: [
+                    { message: 'Algo'},
+                    { message: 'Outro'}
+                ],
+                frutas : [
+                    { nome: 'Banana'},
+                    { nome: 'Maça'}
+                ],
+
+                //for pode ser utilizado para iterar objetos
+                livro : {
+                    titulo: 'Eles morrem você mata',
+                    ano: 2010,
+                    genero: 'Drama'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

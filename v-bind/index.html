@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bind</title>
+
+    <style>
+        .red { color: red;}
+        .green { color: green}
+        button { cursor: pointer}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 :class="counter > 10 ? 'green' : 'red'">{{counter}}</h1>
+        <button @click="aumentar">Aumentar</button>
+        <button @click="diminuir">Diminuir</button>
+
+        <button @click="ativo = !ativo" :class="ativo ? 'green': 'red'">
+            {{ ativo ? 'Ativar' : 'Desativar'}}
+        </button>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data : {
+                counter: 0,
+                ativo: true
+            },
+            methods: {
+                aumentar() {
+                    this.counter++
+                },
+
+                diminuir() {
+                    if(this.counter <= 0) return
+                        this.counter--
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>

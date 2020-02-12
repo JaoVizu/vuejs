@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dados Computados</title>
+</head>
+<body>
+    
+    <div id="app">
+        <input type="text" v-model="message">
+        <p>Mensagem original: "{{message}}"</p>
+        <p>Mensagem ao contrário: "{{reversedMessage}}"</p>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'Ola Mundo!'
+            },
+            computed : {
+                // função getter computada (getter computed)
+                /*
+                    Vue sabe que reversedMessage depende de message, logo ele vai atualizar qualquer ligação
+                    que reversedMessage tem com message
+                    A função getter computada não tem efeitos colaterais
+                */
+
+                /*
+                    Computed vs Methods
+                    Se utilizassemos um metodo no lugar o mesmo resultado seria obtido, porém os dados computados
+                    são cacheados de acordo com suas dependências reativas, logo enquanto message não sofrer
+                    alteração o sistema irá buscar no cache seu ultimo valor.
+                    Já utilizando um metodo, a função seria ativada toda vez, pois não possui cache
+                */
+                reversedMessage(){
+                    return this.message.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

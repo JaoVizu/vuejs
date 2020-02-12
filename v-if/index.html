@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Renderizções Condicionais</title>
+
+    <style>
+        .verde { color: green; }
+        .vermelho { color: red; }
+        button { cursor: pointer;}
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+       <div>
+            <p v-if="awesome">Vue é <strong>INCRÍVEL</strong> 🤩</p>
+            <p v-else>Oh não 😢</p>
+            <button @click="awesome = !awesome">{{ awesome ? 'NÃO É INCRÍVEL' : 'INCRÍVEL'}}</button>
+       </div>
+
+       <br/>
+
+       <div>
+           <label for="">
+               Entre com uma palavra, e ela vai ficar ao contrario
+               <input type="text" v-model="palavra">
+           </label>
+           <p>Palavra ao contrário: {{palavraContrario}}</p>
+       </div>
+       
+       <div>
+           <h3>Se o número for maior que 10, ele fica verde</h3>
+           <p :class="mudarClasse">{{contador}}</p>
+           <button @click="adicionar">Adicionar</button>
+           <button @click="diminuir">Diminuir</button>
+       </div>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                awesome: false,
+                palavra: '',
+                contador: 0
+            },
+            methods : {
+                adicionar() { this.contador++; },
+                diminuir() { this.contador--; }
+            },
+            computed : {
+                palavraContrario(){
+                    return this.palavra.split('').reverse().join('');
+                },
+                mudarClasse(){
+                    return this.contador > 10 ? `verde` : `vermelho`
+                }
+            }
+        })
+    </script>
+</body>
+</html>

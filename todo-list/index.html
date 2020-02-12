@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo List</title>
+
+    <style>
+        .red { color: red;}
+        .green { color: green}
+        button { cursor: pointer}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Todo List</h1>
+        <form @submit.prevent="addTask">
+            <input type="text" id="task" v-model="newTodo">
+            <button>Add Task</button>
+        </form>
+
+        <div>
+            <ul>
+                <li 
+                    is="todo-item"
+                    v-for="(task, index) in tasks"
+                    :key="task.id"
+                    :title="task.name"
+                    v-on:remove='tasks.splice(index, 1)'>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+
+        Vue.component('todo-item', {
+            template: '\
+                <li>\
+                {{ title }}\
+                <button v-on:click="$emit(\'remove\')">Remove</button>\
+                </li>\
+            ',
+            props: ['title']
+        })
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                newTodo: '',
+                tasks : [],
+                nextToDoId: 1
+            },
+            methods: {
+                addTask(){
+                    this.tasks.push({
+                        id: this.nextToDoId++ ,
+                        name: this.newTodo
+                    })
+                    this.newTodo = ''
+                },
+
+                removeTask(){
+                    this.tasks.pop()
+                }
+            }
+        })
+    </script>
+</body>
+</html>
