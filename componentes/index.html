@@ -22,7 +22,7 @@
 <body>
 
     <div id="componente">
-        <card v-for="title in titles" :title="title" :price="12"></card>
+        <card v-for="i in 3"></card>
     </div>
 
     <script src="./vue.js"></script>
@@ -30,10 +30,10 @@
     <script type="text/x-template" id="card-template">
         <div class="card">
             <div class="card__header">
-                <h3>{{ title }}</h3>
+                <h3>{{ info.companyName }}</h3>
             </div>
             <div class="card__body">
-                <p>{{ price }}</p>
+                <p>{{ info.marketCap }}</p>
             </div>
         </div>
     </script>
