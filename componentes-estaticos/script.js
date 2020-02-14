@@ -1,9 +1,12 @@
 Vue.component('etiqueta', {
     template: '#etiqueta-temp',
     props : {
-        titulo : String,
-        index: Number
+        titulo : String
     }
+});
+
+Vue.component('form-plano', {
+    template: '#form-template'
 })
 
 new Vue({ 

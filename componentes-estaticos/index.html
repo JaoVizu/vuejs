@@ -19,22 +19,16 @@
 <body>
     
     <div id="app">
-
-        <h3>Deseja adicionar mais um plano?</h3>
-        <form action="" @submit.prevent="adicionarPlano">
-            <input type="text" placeholder="Novo plano" v-model="novoPlano">
-            <button>Adicionar</button>
-        </form>
-        
+        <h3>Adicione mais planos...</h3>
+       
+        <form-plano></form-plano>
         <etiqueta
             v-for="(titulo, index) in titulos"
             :key="titulo.id"
             :titulo="titulo.titulo"
-            :index="titulo.id"
             v-on:deletar="(titulos.splice(index,1))">
         </etiqueta>
     </div>
-
 
     <script src="./vue.js"></script>
     
@@ -43,6 +37,13 @@
             <span>{{titulo}}</span>
             <button @click="$emit('deletar')">Remover</button>
         </div>
+    </script>
+
+    <script type="text/x-template" id="form-template">
+        <form action="" @submit.prevent="adicionarPlano">
+            <input type="text" placeholder="Novo plano" v-model="novoPlano">
+            <button>Adicionar</button>
+        </form>
     </script>
 
     <script src="./script.js"></script>
