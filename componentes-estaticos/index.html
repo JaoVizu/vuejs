@@ -21,15 +21,17 @@
     <div id="app">
 
         <h3>Deseja adicionar mais um plano?</h3>
-        <form action="">
-            <input type="text" placeholder="Novo plano">
+        <form action="" @submit.prevent="adicionarPlano">
+            <input type="text" placeholder="Novo plano" v-model="novoPlano">
             <button>Adicionar</button>
         </form>
         
         <etiqueta
-            v-for="titulo in titulos"
+            v-for="(titulo, index) in titulos"
             :key="titulo.id"
-            :titulo="titulo.titulo">
+            :titulo="titulo.titulo"
+            :index="titulo.id"
+            v-on:deletar="(titulos.splice(index,1))">
         </etiqueta>
     </div>
 
@@ -39,6 +41,7 @@
     <script type="text/x-template" id="etiqueta-temp">
         <div id="etiqueta">
             <span>{{titulo}}</span>
+            <button @click="$emit('deletar')">Remover</button>
         </div>
     </script>
 
